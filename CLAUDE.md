@@ -14,6 +14,8 @@ Användaren (Melker) skriver på svenska; svara på svenska och håll text i app
 - PWA:n är byggd (2026-10-06): `index.html`, `style.css`, `app.js` (logiken portad från `norrsken.py`, håll dem i synk),
   `sw.js`, `manifest.webmanifest`, `icons/`. Testad lokalt i Edge, JS ger samma siffror som Python-skriptet.
   Plats: knapp för platstjänst + sök på ort (Open-Meteo geocoding) eller koordinater. 24 h är en kryssruta.
+- Sidor: `om-norrsken.html` (guide, innehåll för AdSense) och `integritet.html` (policy, beskriver exakt vad appen skickar/sparar – uppdatera den om det ändras, t.ex. när annonser läggs till).
+- Annonser: Google AdSense planeras men kräver egen domän (köps senare). Behöver då samtyckesruta (CMP) och uppdaterad policy.
 - Hosting: GitHub Pages, repo https://github.com/FastTurtle70/your_aurora (publikt, gratis), adress https://fastturtle70.github.io/your_aurora/. Ändrar man filerna i appen: höj `VERSION` i `sw.js`.
 
 ## Logik
