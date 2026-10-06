@@ -17,6 +17,15 @@ const store = {
 };
 
 // ---------- Datahämtning ----------
+// "2026-10-06T23:00" eller "2026-10-06T23:00:00" som UTC. Tolkas för hand,
+// Safari är petig med datumsträngar som saknar sekunder.
+function parseUtc(s) {
+  const [d, t = "0:0"] = s.split("T");
+  const [y, mo, da] = d.split("-").map(Number);
+  const [h, mi, se = 0] = t.split(":").map(Number);
+  return Date.UTC(y, mo - 1, da, h, mi, se);
+}
+
 async function getJSON(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`${res.status} från ${new URL(url).host}`);
@@ -44,7 +53,7 @@ async function latestKp() {
 
 async function kpForecast() {
   const rows = await getJSON(KP_FORECAST_URL);
-  return rows.map((r) => ({ start: Date.parse(r.time_tag + "Z"), kp: Number(r.kp), type: r.observed }));
+  return rows.map((r) => ({ start: parseUtc(r.time_tag), kp: Number(r.kp), type: r.observed }));
 }
 
 function kpAt(blocks, when) {
@@ -61,7 +70,7 @@ async function cloudCover(lat, lon, hours) {
   const offset = (data.utc_offset_seconds || 0) * 1000;
   const hourly = data.hourly.time.map((t, i) => ({
     local: t.slice(11, 16),
-    when: Date.parse(t + "Z") - offset,
+    when: parseUtc(t) - offset,
     clouds: Number(data.hourly.cloud_cover[i]),
   }));
   return { now: Number(data.current.cloud_cover), hourly };
@@ -188,28 +197,48 @@ function renderDay(rows) {
 let current = null;  // { lat, lon, name }
 let lastData = null;
 
+let dayOpen = false;
+
 async function update() {
   if (!current) return;
   const { lat, lon } = current;
-  const wantDay = $("day-toggle").checked;
   setStatus("Hämtar data …");
   try {
-    const [ov, clouds, kp, blocks] = await Promise.all([
-      auroraProbability(lat, lon),
-      cloudCover(lat, lon, 25),
-      latestKp(),
-      wantDay ? kpForecast() : Promise.resolve(null),
+    const [ov, clouds, kp] = await Promise.all([
+      auroraProbability(lat, lon), cloudCover(lat, lon, 25), latestKp(),
     ]);
     lastData = {
-      aurora: ov.aurora, cloudsNow: clouds.now, hourly: clouds.hourly, kp,
+      lat, lon, aurora: ov.aurora, cloudsNow: clouds.now, hourly: clouds.hourly, kp,
       elev: sunElevation(lat, lon), fetchedAt: Date.now(), offline: !navigator.onLine,
     };
     renderNow(lastData);
-    if (blocks) renderDay(hourlyForecast(lat, lon, clouds.hourly, blocks, ov.aurora));
     setStatus("");
+    if (dayOpen) await updateDay();
   } catch (err) {
     setStatus(`Kunde inte hämta data: ${err.message}`, true);
   }
+}
+
+// 24 timmar hämtas separat så att ett fel där inte stoppar resten av sidan.
+async function updateDay() {
+  if (!lastData) return;
+  const d = lastData;
+  $("day-status").textContent = "Hämtar Kp-prognos …";
+  try {
+    const rows = hourlyForecast(d.lat, d.lon, d.hourly, await kpForecast(), d.aurora);
+    renderDay(rows);
+    $("day-status").textContent = rows.length ? "" : "Ingen prognos tillgänglig just nu.";
+  } catch (err) {
+    $("day-status").textContent = `Kunde inte hämta 24-timmarsprognosen: ${err.message}`;
+  }
+}
+
+function setDayOpen(on) {
+  dayOpen = on;
+  store.set("showDay", on);
+  $("day-body").hidden = !on;
+  $("day-toggle").setAttribute("aria-expanded", String(on));
+  $("day-toggle").firstElementChild.textContent = on ? "Dölj kommande 24 timmar" : "Visa kommande 24 timmar";
 }
 
 function choosePlace(place) {
@@ -278,16 +307,13 @@ $("search").addEventListener("submit", async (e) => {
   }
 });
 
-$("day-toggle").addEventListener("change", () => {
-  const on = $("day-toggle").checked;
-  store.set("showDay", on);
-  $("day-body").hidden = !on;
-  if (on) update();
+$("day-toggle").addEventListener("click", () => {
+  setDayOpen(!dayOpen);
+  if (dayOpen) updateDay();
 });
 
 // Start
-$("day-toggle").checked = !!store.get("showDay");
-$("day-body").hidden = !$("day-toggle").checked;
+setDayOpen(!!store.get("showDay"));
 const saved = store.get("place");
 if (saved) choosePlace(saved);
 else setStatus("Välj plats för att se chansen.");

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sky" aria-hidden="true"><div class="band b1"></div><div class="band b2"></div><div class="band b3"></div></div>
+  <div class="sky" aria-hidden="true"><div class="stars"></div><div class="stars s2"></div><div class="curtain c1"></div><div class="curtain c2"></div><div class="curtain c3"></div></div>
 
   <main>
     <header>
@@ -56,11 +56,11 @@
     </section>
 
     <section id="day" class="card" hidden>
-      <label class="toggle">
-        <input id="day-toggle" type="checkbox">
-        <span>Visa kommande 24 timmar, timme för timme</span>
-      </label>
+      <button id="day-toggle" class="toggle" type="button" aria-expanded="false" aria-controls="day-body">
+        <span>Visa kommande 24 timmar</span><span class="chev" aria-hidden="true">▾</span>
+      </button>
       <div id="day-body" hidden>
+        <p id="day-status" class="small"></p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Tid</th><th>Bedömning</th><th>Norrsken</th><th>Moln</th><th>Sol</th><th>Kp</th></tr></thead>
