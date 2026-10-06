@@ -163,3 +163,31 @@ footer a { color: var(--teal); }
 .dialog ol { padding-left: 1.2em; }
 .dialog li { margin: 6px 0; }
 .dialog form { text-align: right; margin-top: 12px; }
+
+/* Artikelsidor (Om norrsken, Integritet) */
+.article { max-width: 720px; }
+.crumbs { margin-bottom: 4px; }
+.crumbs a, .article a, footer a { color: var(--teal); }
+.article h2 { margin: 0 0 10px; font-size: 1.3rem; }
+.article h3 { margin: 16px 0 6px; font-size: 1.05rem; color: var(--green); }
+.article p, .article li { color: #d3dcee; }
+.article ul, .article ol { padding-left: 1.3em; }
+.article li { margin: 6px 0; }
+.article section { scroll-margin-top: 16px; }
+.toc ol { margin: 0; columns: 2; column-gap: 24px; }
+@media (max-width: 520px) { .toc ol { columns: 1; } }
+.dot { display: inline-block; width: .8em; height: .8em; border-radius: 50%; margin-right: 6px; vertical-align: -.05em; }
+.dot.green { background: #4dffa6; box-shadow: 0 0 8px #4dffa6; }
+.dot.red { background: #ff5d73; box-shadow: 0 0 8px #ff5d73; }
+.dot.violet { background: #a77bff; box-shadow: 0 0 8px #a77bff; }
+.kp-table td, .kp-table th { white-space: normal; text-align: left; vertical-align: top; }
+.kp-table td:first-child { white-space: nowrap; font-weight: 600; color: var(--green); }
+.formula { text-align: center; font-weight: 600; padding: 10px; border-radius: 12px; background: rgba(0,0,0,.25); }
+.cta { text-align: center; margin: 22px 0; }
+a.button { display: inline-block; text-decoration: none; color: var(--text); font-weight: 600; padding: 12px 20px;
+  border-radius: 99px; border: 1px solid rgba(77,255,166,.6);
+  background: linear-gradient(90deg, rgba(77,255,166,.3), rgba(58,208,255,.3)); }
+.guide-link { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  text-decoration: none; color: var(--text); font-size: 1.05rem; }
+.guide-link:hover { border-color: rgba(77,255,166,.5); }
+.guide-link > span:last-child { font-size: 1.4rem; color: var(--green); }

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Integritetspolicy – Your Aurorum</title>
+  <meta name="description" content="Vilka uppgifter Your Aurorum hanterar, var de skickas och hur du tar bort dem.">
+  <meta name="theme-color" content="#070b17">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><div class="stars"></div><div class="stars s2"></div><div class="curtain c1"></div><div class="curtain c2"></div><div class="curtain c3"></div></div>
+
+  <main class="article">
+    <nav class="crumbs"><a href="./">← Tillbaka till prognosen</a></nav>
+
+    <header>
+      <h1>Integritetspolicy</h1>
+      <p class="tagline">Senast uppdaterad 6 oktober 2026</p>
+    </header>
+
+    <section class="card">
+      <h2>Kort sagt</h2>
+      <ul>
+        <li>Du behöver inget konto, och vi samlar inte in namn, e-post eller annat som pekar ut dig.</li>
+        <li>Sidan använder <strong>inga kakor (cookies)</strong> och ingen statistik- eller spårningstjänst.</li>
+        <li>Den plats du väljer sparas bara i din egen webbläsare. För att hämta väderprognosen skickas
+          koordinaterna till vädertjänsten Open-Meteo.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Vem ansvarar?</h2>
+      <p>Your Aurorum är ett privat hobbyprojekt. Frågor om integritet kan du ställa via
+        <a href="https://github.com/FastTurtle70/your_aurora/issues">projektets sida på GitHub</a>.</p>
+    </section>
+
+    <section class="card">
+      <h2>Din plats</h2>
+      <p>Appen behöver en plats för att kunna bedöma chansen att se norrsken. Du väljer själv hur:</p>
+      <ul>
+        <li><strong>"Använd min plats"</strong>: webbläsaren frågar först om lov. Positionen används bara i din
+          webbläsare för att räkna ut bedömningen.</li>
+        <li><strong>Sök på ort eller koordinater</strong>: det du skriver i sökrutan skickas till Open-Meteos ortsök
+          för att hitta orten.</li>
+      </ul>
+      <p>I båda fallen skickas platsens koordinater till <strong>Open-Meteo</strong> för att hämta molnprognosen.
+        Till NOAA skickas ingen plats. Där hämtas en gemensam karta över hela jorden, och sedan läser appen ut värdet
+        för din plats i webbläsaren.</p>
+    </section>
+
+    <section class="card">
+      <h2>Det som sparas på din enhet</h2>
+      <p>Webbläsarens lokala lagring (localStorage) används för två saker, så att du slipper välja om varje gång:</p>
+      <ul>
+        <li>den plats du senast valde,</li>
+        <li>om 24-timmarsprognosen ska vara öppen.</li>
+      </ul>
+      <p>Appen sparar också sina egna filer och senast hämtade data i webbläsarens cache, så att den fungerar utan nät.
+        Inget av detta skickas till oss. Du tar bort det genom att rensa webbplatsdata för sidan i webbläsarens
+        inställningar, eller genom att avinstallera appen.</p>
+    </section>
+
+    <section class="card">
+      <h2>Tjänster som sidan använder</h2>
+      <p>När du använder sidan kontaktar din webbläsare de här tjänsterna direkt. Som vid alla anrop på internet ser de
+        din IP-adress och vilken webbläsare du använder.</p>
+      <ul>
+        <li><strong>GitHub Pages</strong> (GitHub Inc., USA) levererar själva sidan och kan föra tekniska loggar med
+          IP-adresser för drift och säkerhet. Se <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHubs integritetspolicy</a>.</li>
+        <li><strong>Open-Meteo</strong> (Schweiz/EU) tar emot koordinater för väderprognosen och söktext för ortsök.
+          Se <a href="https://open-meteo.com/en/terms">Open-Meteos villkor och integritet</a>.</li>
+        <li><strong>NOAA SWPC</strong> (USA:s myndighet för rymdväder) levererar norrskens- och Kp-data. Ingen plats skickas dit.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Annonser</h2>
+      <p>Sidan visar inga annonser i dag. Om annonser läggs till, till exempel via Google AdSense, uppdateras den här
+        policyn först. Du kommer då att få frågan om du godkänner kakor innan några annonskakor används.</p>
+    </section>
+
+    <section class="card">
+      <h2>Dina rättigheter</h2>
+      <p>Eftersom vi inte själva sparar några uppgifter om dig finns det inget hos oss att begära ut eller radera.
+        Det som finns lagrat ligger i din egen webbläsare och tas bort enligt ovan. Har du synpunkter kan du också
+        vända dig till Integritetsskyddsmyndigheten (<a href="https://www.imy.se/">IMY</a>).</p>
+    </section>
+
+    <footer>
+      <p><a href="./">Prognos</a> · <a href="om-norrsken.html">Om norrsken</a> · <a href="integritet.html">Integritet</a></p>
+    </footer>
+  </main>
+</body>
+</html>

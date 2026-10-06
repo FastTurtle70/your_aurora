@@ -1,10 +1,10 @@
 // Service worker: appens filer sparas för att öppnas utan nät,
 // datan hämtas alltid färsk i första hand och sparad data används som reserv.
-const VERSION = "v3";
+const VERSION = "v4";
 const SHELL = `shell-${VERSION}`;
 const DATA = "data";
 const SHELL_FILES = [
-  "./", "index.html", "style.css", "app.js", "manifest.webmanifest",
+  "./", "index.html", "om-norrsken.html", "integritet.html", "style.css", "app.js", "manifest.webmanifest",
   "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png",
 ];
 
