@@ -324,6 +324,43 @@ document.addEventListener("visibilitychange", () => {
 });
 setInterval(() => { if (document.visibilityState === "visible") update(); }, 10 * 60 * 1000);
 
+// ---------- Installera appen ----------
+// Chrome/Edge/Samsung ger en riktig installationsdialog (beforeinstallprompt).
+// Safari på iPhone har ingen sådan, där visas instruktioner i stället.
+let installEvent = null;
+const isInstalled = () =>
+  window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const isIos = () =>
+  /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); // iPadOS säger sig vara Mac
+
+if (!isInstalled()) $("install").hidden = false;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  installEvent = e;
+});
+
+window.addEventListener("appinstalled", () => {
+  $("install").hidden = true;
+  installEvent = null;
+});
+
+$("install").addEventListener("click", async () => {
+  if (installEvent) {
+    installEvent.prompt();
+    const { outcome } = await installEvent.userChoice;
+    installEvent = null;
+    if (outcome === "accepted") $("install").hidden = true;
+    return;
+  }
+  const ios = isIos();
+  $("install-ios").hidden = !ios;
+  $("install-other").hidden = ios;
+  const dlg = $("install-help");
+  if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+});
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
 }

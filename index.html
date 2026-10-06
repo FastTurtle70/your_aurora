@@ -21,6 +21,7 @@
     <header>
       <h1>Your Aurorum</h1>
       <p class="tagline">Chans att se norrsken där du är</p>
+      <button id="install" class="install" type="button" hidden>⬇ Installera appen</button>
     </header>
 
     <section class="card place">
@@ -76,6 +77,26 @@
       <p>Bedömning = norrskenssannolikhet × andel klar himmel × mörker. Gränserna är grova och justeras efter riktiga kvällar.</p>
     </footer>
   </main>
+
+  <dialog id="install-help" class="dialog">
+    <h2>Installera appen</h2>
+    <div id="install-ios" hidden>
+      <p>På iPhone och iPad, i Safari:</p>
+      <ol>
+        <li>Tryck på <strong>Dela</strong> <span class="ico">⬆︎</span> längst ner (eller uppe till höger på iPad).</li>
+        <li>Välj <strong>Lägg till på hemskärmen</strong>. Du kan behöva scrolla ner i listan.</li>
+        <li>Tryck <strong>Lägg till</strong>.</li>
+      </ol>
+      <p class="small">Använder du Chrome på iPhone: tryck på Dela-knappen i adressfältet, sedan Lägg till på hemskärmen.</p>
+    </div>
+    <div id="install-other" hidden>
+      <p>Öppna webbläsarens meny (<strong>⋮</strong> eller <strong>…</strong>) och välj
+        <strong>Installera app</strong> eller <strong>Lägg till på startskärmen</strong>.</p>
+      <p class="small">Fungerar i Chrome, Edge och Samsung Internet. Firefox på dator kan inte installera appar.</p>
+    </div>
+    <p class="small">Appen får en egen ikon, öppnas i helskärm och visar senast hämtade data även utan nät.</p>
+    <form method="dialog"><button class="primary" type="submit">Okej</button></form>
+  </dialog>
 
   <script src="app.js"></script>
 </body>

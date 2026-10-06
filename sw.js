@@ -1,6 +1,6 @@
 // Service worker: appens filer sparas för att öppnas utan nät,
 // datan hämtas alltid färsk i första hand och sparad data används som reserv.
-const VERSION = "v2";
+const VERSION = "v3";
 const SHELL = `shell-${VERSION}`;
 const DATA = "data";
 const SHELL_FILES = [
