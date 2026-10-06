@@ -1,0 +1,6 @@
+__pycache__/
+.venv/
+*.pyc
+
+# Claude Code-installationsskript, hör inte till appen
+install.cmd
