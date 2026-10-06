@@ -11,6 +11,15 @@ Säger om det finns chans att se norrsken på en given plats, utifrån norrskens
 
 På Mac/Linux: `python3` i stället för `python`.
 
+## Hemsidan / appen (PWA)
+
+`index.html`, `style.css`, `app.js`, `sw.js`, `manifest.webmanifest` och `icons/` är en statisk sida
+med samma logik som skriptet. Den hämtar data direkt från NOAA och Open-Meteo, så ingen server behövs.
+
+Testa lokalt: `python -m http.server 8000` i mappen och öppna http://localhost:8000.
+Publiceras med GitHub Pages (Settings → Pages → Deploy from branch → `main` / root).
+På telefonen: öppna sidan och välj "Lägg till på hemskärmen".
+
 ## Mappen
 
 - `norrsken.py` – skriptet

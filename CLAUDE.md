@@ -11,7 +11,10 @@ Användaren (Melker) skriver på svenska; svara på svenska och håll text i app
   I Windows-konsolen blir å/ä/ö fel i utskriften (teckenkodning), själva logiken påverkas inte.
 - `--24h` ger bedömning timme för timme ett dygn framåt (se Logik). På hemsidan blir det ett tillval.
 - Projektet är ett git-repo (gren `main`), ingen fjärrkälla kopplad än.
-- Nästa steg: bygga en hemsida/PWA av samma logik. Se `docs/pwa-plan.md`.
+- PWA:n är byggd (2026-10-06): `index.html`, `style.css`, `app.js` (logiken portad från `norrsken.py`, håll dem i synk),
+  `sw.js`, `manifest.webmanifest`, `icons/`. Testad lokalt i Edge, JS ger samma siffror som Python-skriptet.
+  Plats: knapp för platstjänst + sök på ort (Open-Meteo geocoding) eller koordinater. 24 h är en kryssruta.
+- Hosting: GitHub Pages, repo `your_aurorum`. Ändrar man filerna i appen: höj `VERSION` i `sw.js`.
 
 ## Logik
 
@@ -29,7 +32,6 @@ Chans = norrskenssannolikhet (OVATION) × andel klar himmel × mörkerfaktor.
 
 Se `docs/datakallor.md`. Alla är gratis och utan API-nyckel.
 
-## Öppna frågor (obesvarade av användaren)
+## Beslut
 
-1. Hosting för PWA:n: GitHub Pages (förslag), Netlify eller Cloudflare Pages?
-2. Ska sidan använda webbläsarens platstjänst, eller bara manuell inmatning av koordinater?
+- Hosting: GitHub Pages. Plats: både platstjänst och manuell inmatning.

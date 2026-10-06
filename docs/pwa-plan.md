@@ -1,5 +1,7 @@
 # Plan: hemsida + telefonapp (PWA)
 
+> Status 2026-10-06: byggd enligt planen nedan. Hosting GitHub Pages, plats via både platstjänst och inmatning.
+
 Målet: en snygg hemsida som fungerar bra på dator och som kan installeras på telefonen
 som en app, där appen egentligen bara är hemsidan. Det kallas PWA (Progressive Web App):
 egen ikon på hemskärmen, helskärm utan adressfält, på både iPhone och Android.

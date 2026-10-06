@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Your Aurorum</title>
+  <meta name="description" content="Finns det chans att se norrsken där du är? Norrskensaktivitet, moln och mörker i en bedömning.">
+  <meta name="theme-color" content="#070b17">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Aurorum">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><div class="band b1"></div><div class="band b2"></div><div class="band b3"></div></div>
+
+  <main>
+    <header>
+      <h1>Your Aurorum</h1>
+      <p class="tagline">Chans att se norrsken där du är</p>
+    </header>
+
+    <section class="card place">
+      <div class="place-row">
+        <button id="locate" class="primary" type="button">📍 Använd min plats</button>
+        <span id="place-name" class="place-name">Ingen plats vald</span>
+      </div>
+      <form id="search" class="search" autocomplete="off">
+        <input id="query" type="text" placeholder="Ort, t.ex. Luleå, eller 65.58, 22.15" aria-label="Ort eller koordinater">
+        <button type="submit">Sök</button>
+      </form>
+      <ul id="results" class="results" hidden></ul>
+    </section>
+
+    <p id="status" class="status" role="status"></p>
+
+    <section id="now" class="card now" hidden>
+      <p class="label">Just nu</p>
+      <h2 id="verdict" class="verdict"></h2>
+      <div class="meter"><div id="meter-fill"></div></div>
+      <dl class="facts">
+        <div><dt>Norrsken</dt><dd id="f-aurora"></dd></div>
+        <div><dt>Moln</dt><dd id="f-clouds"></dd></div>
+        <div><dt>Ljus</dt><dd id="f-light"></dd></div>
+        <div><dt>Kp-index</dt><dd id="f-kp"></dd></div>
+      </dl>
+      <p id="updated" class="small"></p>
+    </section>
+
+    <section id="clouds" class="card" hidden>
+      <p class="label">Moln kommande timmar</p>
+      <ol id="cloud-strip" class="strip"></ol>
+    </section>
+
+    <section id="day" class="card" hidden>
+      <label class="toggle">
+        <input id="day-toggle" type="checkbox">
+        <span>Visa kommande 24 timmar, timme för timme</span>
+      </label>
+      <div id="day-body" hidden>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tid</th><th>Bedömning</th><th>Norrsken</th><th>Moln</th><th>Sol</th><th>Kp</th></tr></thead>
+            <tbody id="day-rows"></tbody>
+          </table>
+        </div>
+        <p class="small">Mer än ungefär en timme framåt bygger på NOAA:s Kp-prognos och en grov modell. Ta det som en fingervisning.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Data: <a href="https://www.swpc.noaa.gov/products/aurora-30-minute-forecast">NOAA SWPC</a> (OVATION, Kp) och <a href="https://open-meteo.com/">Open-Meteo</a> (moln, ortsök).</p>
+      <p>Bedömning = norrskenssannolikhet × andel klar himmel × mörker. Gränserna är grova och justeras efter riktiga kvällar.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
